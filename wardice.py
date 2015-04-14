@@ -11,4 +11,6 @@ playerone = raw_input()
 playertwo = raw_input()
 playerthree = raw_input()
 
-dicelist
+dicelist = [dfour, dsix, deight, dten, dtwelve, dtwenty]
+
+print dicelist
