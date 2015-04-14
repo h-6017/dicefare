@@ -1,9 +1,14 @@
 import random
 
-dfour = 4
-dsix = 6
-deight = 8
-dten = 10
-dtwelve = 12
-dtwenty = 20
+dfour = random.randint(1,4)
+dsix = random.randint(1,6)
+deight = random.randint(1,8)
+dten = random.randint(1,10) 
+dtwelve = random.randint(1,12)
+dtwenty = random.randint(1,20)
 
+playerone = raw_input()
+playertwo = raw_input()
+playerthree = raw_input()
+
+dicelist
