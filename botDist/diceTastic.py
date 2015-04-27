@@ -65,7 +65,7 @@ class Game(object):
 
     def isRoundRunning(self, p1, p2):
         if len(p1.score) >= 2:
-            self.roundIsRunning = False
+            self.endRound()
             return self.roundIsRunning
         if len(p2.score) >= 2:
             self.roundIsRunning = False
@@ -82,14 +82,55 @@ class Game(object):
             self.isRunning = True
             return self.isRunning
 
-    def oneRound(self, answer):
-        while self.game.roundIsRunning:
-            while notValidDice:
-                diceType1 = self.game.getDiceType(playerOne)
-                if diceType1: break
-            while notValidDice:
-                dicetype2 = self.game.getDiceType(playerTwo)
-                if diceType2: break
-            roll1 = playerOne.rollDice(diceType1)
-            roll2 = playerTwo.rollDice(diceType2)
+    def oneRound(self, p1, p2):
+        notValidDice = True
+        while notValidDice:
+            print("Getting the first player's die selection...")
+            diceType1 = self.getDiceType(p1)
+            if diceType1: break
+        while notValidDice:
+            print("Getting the second player's die selection...")
+            diceType2 = self.getDiceType(p2)
+            if diceType2: break
+        print("We should be able to roll the dice...")
+        roll1 = p1.rollDice(diceType1)
+        roll2 = p2.rollDice(diceType2)
+        if 1 in [roll1, roll2]:
+            if roll1 == 1 and roll2 == 1:
+                self.declareDraw()
+            if roll1 == 1:
+                self.declareRoundWin(p1)
+            elif roll2 == 1:
+                self.declareRoundWin(p2)
+        elif roll1 > roll2:
+            self.declareRoundWin(p1)
+        elif roll1 < roll2:
+            self.declareRoundWin(p1)
+        elif roll1 == roll2:
+            self.declareDraw()
+        p1.removeDiceUsed(diceType1)
+        p2.removeDiceUsed(diceType2)
+        return p1, p2
+
+    def assessRound(self, theRound):
+        if 1 in [roll1, roll2]:
+            if roll1 == 1 and roll2 == 1:
+                self.declareDraw()
+            if roll1 == 1:
+                self.declareRoundWin(playerOne)
+            elif roll2 == 1:
+                self.declareRoundWin(playerTwo)
+        elif roll1 > roll2:
+            self.declareRoundWin(playerOne)
+        elif roll1 < roll2:
+            self.declareRoundWin(playerTwo)
+        elif roll1 == roll2:
+            self.declareDraw()
+        playerOne.removeDiceUsed(diceType1)
+        playerTwo.removeDiceUsed(diceType2)
+
+
+
+
+
 

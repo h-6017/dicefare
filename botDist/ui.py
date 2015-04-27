@@ -9,7 +9,7 @@ class UserInterface(object):
         self.goodBye = "Goodbye, sir."
 
     def run(self):
-        yesOrNo = str(raw_input("Would you like to see the main menu?"))
+        yesOrNo = str(raw_input("Would you like to see the main menu?\n[y/n]:"))
         choice = None
         if yesOrNo.lower() == "y":
             while self.running:
