@@ -6,7 +6,7 @@ import json
 
 class Bot(object):
     def __init__(self):
-        self.message = "I am a new bot"
+        self.message = "Generic Message"
         self.name = None
         self.knowledge = {}
     def setName(self, name):
@@ -55,8 +55,9 @@ class BotManager(object):
             #print bot.name
             if bot.name == botName:
                 print("This is the bot you are looking for.")
-                #print bot.name
-                matchedBot = self.botList[bot]
+                print bot.message
+                bot.sayHello()
+                matchedBot = bot 
                 break
             if matchedBot:
                 return matchedBot
@@ -74,15 +75,14 @@ class BotManager(object):
     def deleteBotNamed(self, botName):
         matchedBot = None
         for bot in self.botList:
-            print bot.name
-            
-            if bot.name is botName:
+            if bot.name == botName:
                 print 'This bot has been found -->'
                 matchedBot = bot
-                print matchedBot.name
+                matchedBot.sayHello()
                 break
         if matchedBot:
-            self.botlist.remove(matchedBot)
+            print(matchedBot, "has been deleted.")
+            self.botList.remove(matchedBot)
         else:
             print 'Bot not found'
 

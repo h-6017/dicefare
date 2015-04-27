@@ -13,9 +13,10 @@ class UserInterFace(object):
     def playGame(self):
         while self.game.isRunning:
             answer1 = raw_input("Would You Like to play a game of dice?\n[y/n]:")
-            playerOne = self.game.acceptPlayerOne(raw_input('Player one, please enter your name: > '))
-            playerTwo = self.game.acceptPlayerTwo(raw_input('Player two, please enter your name: > '))
             if answer1.lower() == "y":
+                print self.game.message
+                playerOne = self.game.acceptPlayerOne(raw_input('Player one, please enter your name: > '))
+                playerTwo = self.game.acceptPlayerTwo(raw_input('Player two, please enter your name: > '))
                 while self.game.roundIsRunning:
                     answer = raw_input("Are you ready to play a round?\n[y/n]:")
                     if answer.lower() == "y":

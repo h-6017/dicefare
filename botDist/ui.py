@@ -20,7 +20,7 @@ class UserInterface(object):
                 elif choice == "2":
                     botName = raw_input("Please enter the name of the Thrall you wish to find\n:>:")
                     bot = self.bm.getBotNamed(botName)
-                    print bot.name
+                    #print bot.message
                 elif choice == "3":
                     botName = raw_input("Please enter the name of the Thrall you wish to delete\n:>:")
                     self.bm.deleteBotNamed(botName)
@@ -38,7 +38,7 @@ class UserInterface(object):
                     raw_input("Press enter to try again")
                     self.running = True
                     continue
-                endChoice = raw_input("Would you like to see the menu again?\n[y/n]")
+                endChoice = raw_input("Would you like to see the main menu again?\n[y/n]")
                 if endChoice is "y":
                     self.running = True
                 else:
@@ -48,7 +48,7 @@ class UserInterface(object):
             self.fareWell()
             self.running = False
     def isRunning(self, choice):
-	pass
+	    pass
     def newMenuOption(self):
         choice = str(raw_input("Would you like to see a new menu?\[y/n\]"))
         if choice.lower == "y":
