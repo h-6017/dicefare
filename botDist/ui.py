@@ -32,11 +32,15 @@ class UserInterface(object):
                 elif choice == "5":
                     self.fareWell()
                     self.running = False
+                else:
+                    print("That is not a valid input")
+                    raw_input("Please try again")
+                    self.running = True
         else:
             self.fareWell()
             self.running = False
     def isRunning(self, choice):
-	    pass
+	pass
     def newMenuOption(self):
         choice = str(raw_input("Would you like to see a new menu?\[y/n\]"))
         if choice.lower == "y":

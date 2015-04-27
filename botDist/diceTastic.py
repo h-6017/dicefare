@@ -81,3 +81,15 @@ class Game(object):
         else:
             self.isRunning = True
             return self.isRunning
+
+    def oneRound(self, answer):
+        while self.game.roundIsRunning:
+            while notValidDice:
+                diceType1 = self.game.getDiceType(playerOne)
+                if diceType1: break
+            while notValidDice:
+                dicetype2 = self.game.getDiceType(playerTwo)
+                if diceType2: break
+            roll1 = playerOne.rollDice(diceType1)
+            roll2 = playerTwo.rollDice(diceType2)
+
