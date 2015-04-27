@@ -17,25 +17,33 @@ class UserInterface(object):
                 if choice == "1":
                     botName = raw_input("Please enter the name of your new Thrall\n:>:")
                     self.bm.addBotNamed(botName)
-                    self.bm.printBots()
                 elif choice == "2":
-                    botName = raw_input("Please enter the name of the Thrall you wish to find")
+                    botName = raw_input("Please enter the name of the Thrall you wish to find\n:>:")
                     bot = self.bm.getBotNamed(botName)
-                    print bot.hello, "I'm", bot
-                    print bot.goodBye #working on database retrieval
+                    print bot.name
                 elif choice == "3":
-                    botName = raw_input("Please enter the name of the Thrall you wish to delete")
-                    pass#database retrieval still pending
+                    botName = raw_input("Please enter the name of the Thrall you wish to delete\n:>:")
+                    self.bm.deleteBotNamed(botName)
                 elif choice == "4":
+                    self.bm.printBots()
+                elif choice == "5":
                     uI = UserInterFace()
                     uI.playGame()
-                elif choice == "5":
+                elif choice == "6":
                     self.fareWell()
                     self.running = False
+                    break
                 else:
                     print("That is not a valid input")
-                    raw_input("Please try again")
+                    raw_input("Press enter to try again")
                     self.running = True
+                    continue
+                endChoice = raw_input("Would you like to see the menu again?\n[y/n]")
+                if endChoice is "y":
+                    self.running = True
+                else:
+                    self.fareWell()
+                    self.running = False
         else:
             self.fareWell()
             self.running = False
@@ -54,9 +62,10 @@ class UserInterface(object):
             print "--MAIN MENU--"
             print "[1]Create a new Thrall."
             print "[2]Find an existing Thrall."
-            print "[3]Modify an existing Thrall."
-            print "[4]Play a dice roll game."
-            print "[5]Exit"
+            print "[3]Delete an existing Thrall."
+            print "[4]Current Thrall list."
+            print "[5]Play a dice roll game."
+            print "[6]Exit"
             print "Please input the number that corresponds with your choice"
             choice = str(raw_input(":>: "))
             return choice

@@ -68,7 +68,7 @@ class Game(object):
             self.endRound()
             return self.roundIsRunning
         if len(p2.score) >= 2:
-            self.roundIsRunning = False
+            self.endRound()
             return self.roundIsRunning
         else:
             self.roundIsRunning = True

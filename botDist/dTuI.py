@@ -11,17 +11,24 @@ class UserInterFace(object):
         print("{p2.name} Has {p2.score}".format(p2=self.game.playerTwo))
 
     def playGame(self):
-        answer = raw_input("Would You Like to play a game of dice?\n[y/n]:")
-        playerOne = self.game.acceptPlayerOne(raw_input('Player one, please enter your name: > '))
-        playerTwo = self.game.acceptPlayerTwo(raw_input('Player two, please enter your name: > '))
         while self.game.isRunning:
-            answer = raw_input("Are you ready to play a round?\n[y/n]:")
-            if answer.lower() == "y":
+            answer1 = raw_input("Would You Like to play a game of dice?\n[y/n]:")
+            playerOne = self.game.acceptPlayerOne(raw_input('Player one, please enter your name: > '))
+            playerTwo = self.game.acceptPlayerTwo(raw_input('Player two, please enter your name: > '))
+            if answer1.lower() == "y":
                 while self.game.roundIsRunning:
-                    self.game.oneRound(playerOne, playerTwo)
-                    self.game.isRoundRunning(playerOne, playerTwo)
-                    if self.game.isRunning is False:
+                    answer = raw_input("Are you ready to play a round?\n[y/n]:")
+                    if answer.lower() == "y":
+                        self.game.oneRound(playerOne, playerTwo)
+                        self.game.isRoundRunning(playerOne, playerTwo)
+                        self.displayScore()
+                    else:
+                        print "Have a pleasant day."
                         break
+                    if self.game.roundIsRunning is False:
+                        break
+                if self.game.isRunning is False:
+                    break
                 self.game.shouldGameContinue(playerOne, playerTwo)
             else:
                 print "Please have a pleasant day."

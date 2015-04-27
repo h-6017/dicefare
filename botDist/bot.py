@@ -3,6 +3,7 @@ from pymongo import MongoClient
 
 
 import json
+
 class Bot(object):
     def __init__(self):
         self.message = "I am a new bot"
@@ -11,9 +12,7 @@ class Bot(object):
     def setName(self, name):
         self.name = name
     def sayHello(self):
-        print 'hello', self.name
-    def saygoodbye(self):
-        print 'Goodbye then,', self.name
+        print 'Hello, I am', self.name
 
     @property
     def asDict(self):
@@ -50,10 +49,20 @@ class BotManager(object):
                 print "Bot not found"
                 break
 
-    def getBotNamed(self, name):#need to figure out how to get the bot out of database
-        botName = self.collection.find_one(name)#and build new bot to spec
-        for botName in botnames:
-            return(botName)
+    def getBotNamed(self, botName):#need to figure out how to get the bot out of database
+        matchedBot = None
+        for bot in self.botList:
+            #print bot.name
+            if bot.name == botName:
+                print("This is the bot you are looking for.")
+                #print bot.name
+                matchedBot = self.botList[bot]
+                break
+            if matchedBot:
+                return matchedBot
+            else:
+                print("Bot not found yet, checking...")
+        #botName = self.collection.find_one(name)#and build new bot to spec
 
 
     def addBotNamed(self, botName):
@@ -65,8 +74,12 @@ class BotManager(object):
     def deleteBotNamed(self, botName):
         matchedBot = None
         for bot in self.botList:
-            if bot.name(botName) is botName:
-                matchedBot = botName
+            print bot.name
+            
+            if bot.name is botName:
+                print 'This bot has been found -->'
+                matchedBot = bot
+                print matchedBot.name
                 break
         if matchedBot:
             self.botlist.remove(matchedBot)
@@ -74,5 +87,7 @@ class BotManager(object):
             print 'Bot not found'
 
     def printBots(self):
+        print("Here is a list of the bots I have stored.")
         for bot in self.botList:
-            print "This bot\'s name is\n:>:", bot.name
+            print bot.name
+        print("")
