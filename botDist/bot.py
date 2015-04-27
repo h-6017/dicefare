@@ -81,7 +81,7 @@ class BotManager(object):
                 matchedBot.sayHello()
                 break
         if matchedBot:
-            print(matchedBot, "has been deleted.")
+            print matchedBot.name, "has been deleted."
             self.botList.remove(matchedBot)
         else:
             print 'Bot not found'

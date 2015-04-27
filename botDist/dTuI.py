@@ -12,6 +12,7 @@ class UserInterFace(object):
 
     def playGame(self):
         while self.game.isRunning:
+            print "Press q at any time to quit to the main menu"
             answer1 = raw_input("Would You Like to play a game of dice?\n[y/n]:")
             if answer1.lower() == "y":
                 print self.game.message
@@ -23,6 +24,10 @@ class UserInterFace(object):
                         self.game.oneRound(playerOne, playerTwo)
                         self.game.isRoundRunning(playerOne, playerTwo)
                         self.displayScore()
+                    elif answer.lower() == "q":
+                        self.game.roundIsRunning is False
+                        self.game.isRunning is False
+                        break
                     else:
                         print "Have a pleasant day."
                         break
