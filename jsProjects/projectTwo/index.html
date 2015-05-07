@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="stylish.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>sudospace</title>
+    </head>
+
+    <body>
+        <h3 class="title" >Lets build a cubular house!</h3>
+
+        <section class="input">
+            Concrete:<br><input type="number" id="concrete" oninput="javascript:byMat()"><br>
+            Brick:<br><input type="number" id="brick" oninput="javascript:byMat()"><br>
+            Wood:<br><input type="number" id="wood" oninput="javascript:byMat()"><br>
+            Decor:<br><input type="number" id="decor" oninput="javascript:byMat()"><br>
+        </section>
+        <section class="output">
+            Total Cost:(USD)<br><input type="text" id="cost" oninput="javascript:byCost()"><br>
+            Square Footage Possible:<br><input type="text" id="footage" placeholder="Insufficient Materials" oninput="javascript:byFoot()" ><br>
+        </section>
+    </body>
+
+    <script src='javas.js'></script>
+
+</html>

@@ -1,0 +1,21 @@
+section.output{
+    position: fixed;
+    top: 55px;
+    left: 200px;
+    right: auto;
+    width: 180px;
+}
+
+section.input{
+    position: fixed;
+    top: 55px;
+    left: 5px;
+    right: auto;
+    width: 180px;
+}
+h3.title{
+    position: fixed;
+    width: 100%
+    top: auto;
+
+}
