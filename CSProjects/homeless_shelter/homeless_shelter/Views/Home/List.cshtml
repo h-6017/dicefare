@@ -5,4 +5,10 @@
 
 <h2>@ViewBag.Title</h2>
 <h2>@ViewBag.Message</h2>
+@using homeless_shelter.Models
+@model TheShelter
 
+@foreach (Person p in @Model.roster)
+{
+    <p>@p.Name</p>
+}

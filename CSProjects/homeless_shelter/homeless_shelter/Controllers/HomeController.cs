@@ -15,8 +15,17 @@ namespace homeless_shelter.Controllers
     }
     public class HomeController : Controller
     {
+           /\O
+            /\/
+           /
+          / \
+         /   \
+        LOL LOL
+        LOLLERSKATES
+        Lock your computer!
 
         static TheShelter dCCShelter;
+        
         public ActionResult GetView(string i)
         {
             State s = new State();
@@ -66,9 +75,12 @@ namespace homeless_shelter.Controllers
         }
         public ActionResult Add()
         {
-            ViewBag.Message = "Add a new person to the homeless shelter.";
+            Person person = new Person();
 
-            return View("Add");
+            ViewBag.Message = "Add a new person to the homeless shelter.";
+            ViewResult rs = View("Add", person);
+            return rs;
+
         }
         public ActionResult Remove()
         {
