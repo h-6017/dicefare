@@ -3,12 +3,15 @@
     ViewBag.Title = "List";
 }
 
-<h2>@ViewBag.Title</h2>
 <h2>@ViewBag.Message</h2>
+
 @using homeless_shelter.Models
 @model TheShelter
-
-@foreach (Person p in @Model.roster)
+@foreach (Person p in Model.roster)
 {
     <p>@p.Name</p>
 }
+<ul>
+    <li>@Html.ActionLink("Add a Person", "Add")</li>
+    <li>@Html.ActionLink("Remove a Person", "Remove")</li>
+</ul>

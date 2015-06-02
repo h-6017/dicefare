@@ -15,14 +15,6 @@ namespace homeless_shelter.Controllers
     }
     public class HomeController : Controller
     {
-           /\O
-            /\/
-           /
-          / \
-         /   \
-        LOL LOL
-        LOLLERSKATES
-        Lock your computer!
 
         static TheShelter dCCShelter;
         
@@ -60,6 +52,10 @@ namespace homeless_shelter.Controllers
             {
                 dCCShelter = new TheShelter();
             }
+            if (dCCShelter.roster == null)
+            {
+                dCCShelter.roster = new List<Person>();
+            }
         }
             
         public ActionResult Index()
@@ -84,15 +80,28 @@ namespace homeless_shelter.Controllers
         }
         public ActionResult Remove()
         {
-            ViewBag.Message = "Remove an existing person to the homeless shelter.";
+            Init();
+            ViewBag.Message = "Remove an existing person from the homeless shelter.";
 
-            return View();
+            return View("Remove", dCCShelter);
+        }
+        public ActionResult RemovePerson(string name)
+        {
+            //Init();
+
+            dCCShelter.roster = dCCShelter.roster.Where(e => !e.Name.Equals(name)).ToList();
+
+            return View("List", dCCShelter);
+            //dCCShelter.roster = dCCShelter.roster.Where(per => per.Name == name).ToList();
+            
+
         }
         public ActionResult List()
         {
+            Init();
             ViewBag.Message = "A list of all the people currently in this homeless shelter.";
 
-            return View();
+            return View("List", dCCShelter);
         }
 
         public ActionResult Contact()
@@ -101,12 +110,14 @@ namespace homeless_shelter.Controllers
 
             return View();
         }
-        public void AddPerson(string name)
+        public ActionResult AddPerson(string name)
         {
+            Init();
             Person person = new Person();
             person.Name = name;
 
             dCCShelter.roster.Add(person);
+            return View("List", dCCShelter);
         }
     }
 }

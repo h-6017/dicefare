@@ -2,7 +2,17 @@
 @{
     ViewBag.Title = "Remove";
 }
+@using homeless_shelter.Models
+@model TheShelter
 
-<h2>@ViewBag.Title</h2>
 <h2>@ViewBag.Message</h2>
 
+@using (Html.BeginForm("RemovePerson", "Home"))
+{
+    @Html.TextBox("name");
+    <input type="submit" />
+}
+<ul>
+    <li>@Html.ActionLink("Add a Person", "Add")</li>
+    <li>@Html.ActionLink("List all residents", "List")</li>
+</ul>
