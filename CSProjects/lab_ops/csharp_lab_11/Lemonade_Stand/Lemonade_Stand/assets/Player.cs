@@ -8,7 +8,7 @@ namespace Lemonade_Stand.assets
 {
     class Player
     {
-        Stand lemon_stand;
+        public Stand lemon_stand;
         public int money;
         public string name;
         public Player()
@@ -35,6 +35,10 @@ namespace Lemonade_Stand.assets
         public void setPrice(int price_per_cup)
         {
             this.lemon_stand.price_per_cup = price_per_cup;
+        }
+        public void StartSales()
+        {
+            throw new NotImplementedException();
         }
 
     }
