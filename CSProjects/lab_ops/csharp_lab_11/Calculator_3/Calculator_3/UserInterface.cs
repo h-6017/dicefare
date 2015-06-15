@@ -12,10 +12,8 @@ namespace Calculator_3
         private bool is_running;
         public UserInterface()
         {
-            if (this.is_running == null)
-            {
-                this.is_running = true;
-            }
+            this.is_running = true;
+
             if (this.equation == null)
             {
                 this.equation = new Equation();
@@ -26,7 +24,7 @@ namespace Calculator_3
             while (this.is_running)
             {
                 Equation eq = this.equation;
-                List<string> operands = this.operand_prompt();
+                List<string> operands = operand_prompt();
                 eq.first_operand = operands[0];
                 eq.second_operand = operands[1];
                 eq.math_symbol = this.operator_prompt();
@@ -61,7 +59,7 @@ namespace Calculator_3
             string desired_operation = Console.ReadLine();
             return desired_operation;
         }
-        public Equation createNewEquation(string math_symbol, double first_operand, double second_operand)
+        public Equation createNewEquation(string math_symbol, string first_operand, string second_operand)
         {
             Equation equation = new Equation(math_symbol, first_operand, second_operand);
             return equation;

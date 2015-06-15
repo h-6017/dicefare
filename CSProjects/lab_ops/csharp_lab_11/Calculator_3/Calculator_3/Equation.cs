@@ -30,35 +30,56 @@ namespace Calculator_3
         {
             this.math_symbol = symbol;
             this.first_operand = f_op;
-            this.second_operand = f_op;
+            this.second_operand = s_op;
         }
         public double Compute()
         {
             this.imp_calc = evaluateOperation(this.math_symbol, this.first_operand, this.second_operand);
 
-            if (this.math_symbol == "+")
+            if (this.imp_calc == ImpossibleCalculations.none)
             {
-                return this.Add(this.first_operand, this.second_operand);
+                if (this.math_symbol == "+")
+                {
+                    return this.Add(Double.Parse(this.first_operand), Double.Parse(this.second_operand));
+                }
+                if (this.math_symbol == "/")
+                    throw new NotImplementedException();
             }
-            throw new NotImplementedException();
         }
 
         private ImpossibleCalculations evaluateOperation(string math_symbol, string first_operator, string second_operator)
         {
-            ImpossibleCalculations imp_calc = ImpossibleCalculations.none;
-            
 
-            bool type_one = first_operand;
-            var type_two = second_operand.GetType();
-            if (math_symbol == "/" && second_operand == 0)
+            try
             {
-                imp_calc = ImpossibleCalculations.DivideByZero;
+                Double.Parse(first_operand);
             }
-            else if (first_operand > Double.MaxValue || second_operand > Double.MaxValue)
+            catch (Exception exception)
             {
-                imp_calc = ImpossibleCalculations.ExceededMaxValue;
-            }else if(type_one )
-            throw new NotImplementedException();
+                return ImpossibleCalculations.NotANumber;
+            }
+
+            try
+            {
+                Double.Parse(second_operand);
+            }
+            catch (Exception exception)
+            {
+                return ImpossibleCalculations.NotANumber;
+            }
+
+            if (math_symbol == "/" && second_operand == "0")
+            {
+                return ImpossibleCalculations.DivideByZero;
+            }
+            else if (Double.Parse(first_operand) > Double.MaxValue || Double.Parse(second_operand) > Double.MaxValue)
+            {
+                return ImpossibleCalculations.ExceededMaxValue;
+            }
+            else
+            {
+                return ImpossibleCalculations.none;
+            }
         }
         public double Add(double f_op, double s_op)
         {
