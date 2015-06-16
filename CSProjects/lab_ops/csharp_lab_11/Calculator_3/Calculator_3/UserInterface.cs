@@ -28,13 +28,14 @@ namespace Calculator_3
                 eq.first_operand = operands[0];
                 eq.second_operand = operands[1];
                 eq.math_symbol = this.operator_prompt();
-                Console.WriteLine("The answer is : ", eq.Compute());
+                Console.WriteLine("The answer is : {0}", eq.Compute());
                 Console.WriteLine("Continue?[y/n]");
                 string user_input = Console.ReadLine();
-                if (user_input == "y")
+                if (user_input == "n")
                 {
                     this.is_running = false;
                 }
+                Console.Clear();
             }
         }
 

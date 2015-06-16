@@ -38,13 +38,28 @@ namespace Calculator_3
 
             if (this.imp_calc == ImpossibleCalculations.none)
             {
+                double f_op = Double.Parse(this.first_operand);
+                double s_op = Double.Parse(this.second_operand);
                 if (this.math_symbol == "+")
                 {
-                    return this.Add(Double.Parse(this.first_operand), Double.Parse(this.second_operand));
+                    return this.Add(f_op, s_op);
                 }
-                if (this.math_symbol == "/")
-                    throw new NotImplementedException();
+                else if (this.math_symbol == "/")
+                {
+                    return this.Divide(f_op, s_op);
+                }
+                else if(this.math_symbol == "*")
+                {
+                    return this.Multiply(f_op, s_op);
+                }
+                else if (this.math_symbol == "-")
+                {
+                    return this.Subtract(f_op, s_op);
+                }
+
             }
+            Console.WriteLine("This calculation is impossible... \nReason:[{0}]", this.imp_calc.ToString());
+            return 0;
         }
 
         private ImpossibleCalculations evaluateOperation(string math_symbol, string first_operator, string second_operator)
@@ -53,14 +68,6 @@ namespace Calculator_3
             try
             {
                 Double.Parse(first_operand);
-            }
-            catch (Exception exception)
-            {
-                return ImpossibleCalculations.NotANumber;
-            }
-
-            try
-            {
                 Double.Parse(second_operand);
             }
             catch (Exception exception)
@@ -68,18 +75,27 @@ namespace Calculator_3
                 return ImpossibleCalculations.NotANumber;
             }
 
+
             if (math_symbol == "/" && second_operand == "0")
             {
                 return ImpossibleCalculations.DivideByZero;
             }
-            else if (Double.Parse(first_operand) > Double.MaxValue || Double.Parse(second_operand) > Double.MaxValue)
+            try 
+            {
+                double test_one = Convert.ToDouble(first_operand);
+                double test_two = Convert.ToDouble(second_operand);
+                if (test_one > int.MaxValue || test_two > int.MaxValue)
+                {
+                    return ImpossibleCalculations.ExceededMaxValue;
+                }
+            }
+            catch(OverflowException)
             {
                 return ImpossibleCalculations.ExceededMaxValue;
             }
-            else
-            {
-                return ImpossibleCalculations.none;
-            }
+
+            return ImpossibleCalculations.none;
+
         }
         public double Add(double f_op, double s_op)
         {
@@ -95,7 +111,7 @@ namespace Calculator_3
         }
         public double Divide(double f_op, double s_op)
         {
-            return f_op / s_op;
+            return Math.Floor(f_op / s_op);
         }
     }
 }
